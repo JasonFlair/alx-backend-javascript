@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export default function createReportObject(employeesList) {
   return {
     allEmployees: employeesList,
@@ -8,3 +9,15 @@ export default function createReportObject(employeesList) {
 
   };
 }
+=======
+export default function createReportObject(employeesList) {
+  return {
+    allEmployees: {
+      ...employeesList,
+    },
+    getNumberOfDepartments(employeesList) {
+      return Object.keys(employeesList).length;
+    },
+  };
+}
+>>>>>>> 6882ec3407c4b1b848358386d600b72751b373f8
