@@ -7,5 +7,5 @@ const employees = {
 };      
 
 const report = createReportObject(employees);
-console.log(report);
+console.log(report.allEmployees);
 console.log(report.getNumberOfDepartments(report.allEmployees));
