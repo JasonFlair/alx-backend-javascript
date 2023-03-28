@@ -9,7 +9,7 @@ export default function updateStudentGradeByCity(students, city, newGrades) {
          * and return a new dictionary for each */
       const grade = newGrades.find((grade) => student.id === grade.studentId);
       if (grade) {
-        return { ...student, grade: grade.grade};
+        return { ...student, grade: grade.grade };
       }
       return { ...student, grade: 'N/A' };
     });
