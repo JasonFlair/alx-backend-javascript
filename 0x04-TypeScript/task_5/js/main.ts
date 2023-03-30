@@ -1,11 +1,11 @@
 export interface MajorCredits {
     credits: number;
-    __type: 'MajorCredits';
+    brand: 'Pepsi';
   }
   
   export interface MinorCredits {
     credits: number;
-    __type: 'MinorCredits';
+    brand: 'Coke';
   }
   
   export function sumMajorCredits(
