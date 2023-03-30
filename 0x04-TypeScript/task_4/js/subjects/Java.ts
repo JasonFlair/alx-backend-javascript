@@ -1,8 +1,8 @@
-declare namespace Subjects {
+namespace Subjects {
     export interface Teacher {
-        experienceTeachingC?: number,
+        experienceTeachingJava?: number,
     }
-    class Java extends Subject {
+    export class Java extends Subject {
         getRequirements(): string {
             return 'Here is the list of requirements for Java';
         }
