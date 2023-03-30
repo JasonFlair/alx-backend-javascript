@@ -7,9 +7,9 @@ namespace Subjects {
             return 'Here is the list of requirements for Java';
         }
         getAvailableTeacher(): string {
-            if (this.teacher.experienceTeachingC == undefined) {
+            if (this.teacher.experienceTeachingJava == undefined) {
                 return 'No available teacher'
-            } else if (this.teacher.experienceTeachingC <= 0){
+            } else if (this.teacher.experienceTeachingJava <= 0){
                 return 'No available teacher'
             } else {
                 return `Available Teacher: ${this.teacher.firstName}`;
