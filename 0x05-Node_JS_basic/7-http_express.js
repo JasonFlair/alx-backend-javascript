@@ -1,16 +1,24 @@
+const express = require('express');
 const fs = require('fs');
+const app = express();
+const port = 1245;
+const filePath = process.argv[2];
 
-function countStudents(file_path) {
+app.get('/', (req, res) => {
+  res.send('Hello Holberton School!');
+});
+
+app.get('/students', (req, res) => {
   return new Promise((resolve, reject) => {
-    fs.readFile(file_path, 'utf-8', (error, data) => {
+    fs.readFile(filePath, 'utf-8', (error, data) => {
       if (error) {
-        reject(Error("Cannot load the database"));
+        reject(Error('Cannot load the database'));
       } else {
         rows = data.split('\n');
-        filtered_rows = [] // to make sure no empty line is counted.
+        filtered_rows = []; // to make sure no empty line is counted.
         for (row of rows) {
           if (row !== '') {
-            filtered_rows.push(row.split(","));
+            filtered_rows.push(row.split(','));
           }
         }
         // check students count, excludes the first row
@@ -30,11 +38,11 @@ function countStudents(file_path) {
         }
 
         csStudentsNum = csArray.length;
-        sweStudentsNum = sweArray.length
+        sweStudentsNum = sweArray.length;
 
         // get first names of individuals for each field.
-        csFirstNames = []
-        sweFirstNames = []
+        csFirstNames = [];
+        sweFirstNames = [];
         for (individual of csArray) {
           csFirstNames.push(individual[0]);
         }
@@ -43,12 +51,16 @@ function countStudents(file_path) {
           sweFirstNames.push(individual[0]);
         }
 
-        console.log(`Number of students: ${studentsNum}`);
-        console.log(`Number of students in CS: ${csStudentsNum}. List: ${csFirstNames.join(', ')}`);
-        console.log(`Number of students in SWE: ${sweStudentsNum}. List: ${sweFirstNames.join(', ')}`);
+        res.write(`This is the list of our students\n`);
+        res.write(`Number of students: ${studentsNum}\n`);
+        res.write(`Number of students in CS: ${csStudentsNum}. List: ${csFirstNames.join(', ')}\n`);
+        res.write(`Number of students in SWE: ${sweStudentsNum}. List: ${sweFirstNames.join(', ')}`);
+        res.end();
+        resolve(data);
       }
-      resolve(data);
     });
   });
-}
-module.exports = countStudents;
+});
+
+app.listen(port);
+module.exports = app;
