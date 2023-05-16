@@ -10,4 +10,3 @@ app.use('/students/:major', allRoutes);
 
 app.listen(port);
 
-export default app;
