@@ -1,45 +1,45 @@
 const fs = require('fs');
 
-function countStudents(file_path) {
+function countStudents(filePath) {
   return new Promise((resolve, reject) => {
-    fs.readFile(file_path, 'utf-8', (error, data) => {
+    fs.readFile(filePath, 'utf-8', (error, data) => {
       if (error) {
-        reject(Error("Cannot load the database"));
+        reject(Error('Cannot load the database'));
       } else {
-        rows = data.split('\n');
-        filtered_rows = [] // to make sure no empty line is counted.
-        for (row of rows) {
+        const rows = data.split('\n');
+        const filteredRows = []; // to make sure no empty line is counted.
+        for (const row of rows) {
           if (row !== '') {
-            filtered_rows.push(row.split(","));
+            filteredRows.push(row.split(','));
           }
         }
         // check students count, excludes the first row
-        studentsNum = filtered_rows.length - 1;
+        const studentsNum = filteredRows.length - 1;
 
         // initialise special arrays for cs and swe
-        csArray = [];
-        sweArray = [];
-        for (list of filtered_rows) {
-          for (obj of list) {
-            if (obj == 'CS') {
+        const csArray = [];
+        const sweArray = [];
+        for (const list of filteredRows) {
+          for (const obj of list) {
+            if (obj === 'CS') {
               csArray.push(list);
-            } else if (obj == 'SWE') {
+            } else if (obj === 'SWE') {
               sweArray.push(list);
             }
           }
         }
 
-        csStudentsNum = csArray.length;
-        sweStudentsNum = sweArray.length
+        const csStudentsNum = csArray.length;
+        const sweStudentsNum = sweArray.length;
 
         // get first names of individuals for each field.
-        csFirstNames = []
-        sweFirstNames = []
-        for (individual of csArray) {
+        const csFirstNames = [];
+        const sweFirstNames = [];
+        for (const individual of csArray) {
           csFirstNames.push(individual[0]);
         }
 
-        for (individual of sweArray) {
+        for (const individual of sweArray) {
           sweFirstNames.push(individual[0]);
         }
 
