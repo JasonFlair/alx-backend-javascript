@@ -2,7 +2,7 @@ const readDatabase = require('../utils');
 
 class StudentsController {
   static getAllStudents(request, response) {
-    response.statusCode = 200;
+    response.status = 200;
     readDatabase(process.argv[2]).then((studentsPerMajor) => {
       const csStudents = studentsPerMajor.CS;
       const sweStudents = studentsPerMajor.SWE;
@@ -17,7 +17,7 @@ class StudentsController {
   }
 
   static getAllStudentsByMajor(request, response) {
-    response.statusCode = 200;
+    response.status = 200;
     readDatabase(process.argv[2]).then((studentsPerMajor) => {
       const csStudents = studentsPerMajor.CS;
       const sweStudents = studentsPerMajor.SWE;
