@@ -25,7 +25,7 @@ class StudentsController {
       const sweStudentCount = sweStudents.length;
 
       if (request.params.major === 'CS') {
-        response.send(`List: ${csStudents.join(', ')}\n`);
+        response.send(`List: ${csStudents.join(', ')}`);
       } else if (request.params.major === 'SWE') {
         response.send(`List: ${sweStudents.join(', ')}`);
       } else {
