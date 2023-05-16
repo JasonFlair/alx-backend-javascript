@@ -5,6 +5,7 @@ const databaseFilePath = process.argv[2];
 
 const hostname = '127.0.0.1';
 const port = 1245;
+// eslint-disable-next-line consistent-return
 const app = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
