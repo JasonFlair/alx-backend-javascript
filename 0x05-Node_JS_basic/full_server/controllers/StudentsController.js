@@ -2,7 +2,6 @@ const readDatabase = require('../utils');
 
 class StudentsController {
   static getAllStudents(request, response) {
-    response.status = 200;
     readDatabase(process.argv[2]).then((studentsPerMajor) => {
       const csStudents = studentsPerMajor.CS;
       const sweStudents = studentsPerMajor.SWE;
@@ -11,24 +10,24 @@ class StudentsController {
 
       response.write('This is the list of our students\n');
       response.write(`Number of students in CS: ${csStudentCount}. List: ${csStudents.join(', ')}\n`);
-      response.write(`Number of students in SWE: ${sweStudentCount}. List: ${sweStudents.join(', ')}`);
-      response.end();
+      response.end(`Number of students in SWE: ${sweStudentCount}. List: ${sweStudents.join(', ')}`);
     });
   }
 
   static getAllStudentsByMajor(request, response) {
-    response.status = 200;
     readDatabase(process.argv[2]).then((studentsPerMajor) => {
       const csStudents = studentsPerMajor.CS;
       const sweStudents = studentsPerMajor.SWE;
 
       if (request.params.major === 'CS') {
-        response.send(`List: ${csStudents.join(', ')}\n`);
+        response.status(200).send(`List: ${csStudents.join(', ')}\n`);
       } else if (request.params.major === 'SWE') {
-        response.send(`List: ${sweStudents.join(', ')}\n`);
+        response.status(200).send(`List: ${sweStudents.join(', ')}`);
       } else {
-        response.status(500).send('Major parameter must be CS or SWE\n');
+        response.status(500).send('Major parameter must be CS or SWE');
       }
+    }).catch(() => {
+      response.status(500).send('Cannot load the database');
     });
   }
 }
