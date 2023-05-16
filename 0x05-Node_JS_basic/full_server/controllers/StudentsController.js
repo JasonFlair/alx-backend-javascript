@@ -23,11 +23,11 @@ class StudentsController {
       const sweStudents = studentsPerMajor.SWE;
 
       if (request.params.major === 'CS') {
-        response.send(`List: ${csStudents.join(', ')}`);
+        response.send(`List: ${csStudents.join(', ')}\n`);
       } else if (request.params.major === 'SWE') {
-        response.send(`List: ${sweStudents.join(', ')}`);
+        response.send(`List: ${sweStudents.join(', ')}\n`);
       } else {
-        response.status(500).send('Major parameter must be CS or SWE');
+        response.status(500).send('Major parameter must be CS or SWE\n');
       }
     });
   }
