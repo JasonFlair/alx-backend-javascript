@@ -21,8 +21,6 @@ class StudentsController {
     readDatabase(process.argv[2]).then((studentsPerMajor) => {
       const csStudents = studentsPerMajor.CS;
       const sweStudents = studentsPerMajor.SWE;
-      const csStudentCount = csStudents.length;
-      const sweStudentCount = sweStudents.length;
 
       if (request.params.major === 'CS') {
         response.send(`List: ${csStudents.join(', ')}`);
