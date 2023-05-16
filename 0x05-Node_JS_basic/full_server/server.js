@@ -9,4 +9,4 @@ app.use('/students', allRoutes);
 app.use('/students/:major', allRoutes);
 
 app.listen(port);
-
+module.exports = app;
